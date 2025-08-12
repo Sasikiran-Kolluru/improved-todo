@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>To-Do List</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+   
+  </style>
+</head>
+<body>
+  <header class="header">
+    <h1 id="day-title"></h1>
+  </header>
+
+  <main class="container">
+    <div class="add-task-container">
+      <input type="text" id="task-input" placeholder="Enter a new task..." />
+      <button onclick="addTask()">Add</button>
+    </div>
+    <ul id="task-list"></ul>
+  </main>
+
+  <script>
+    let day = localStorage.getItem("selectedDay");
+    document.getElementById("day-title").textContent = `${day} Tasks`;
+
+    const list = document.getElementById("task-list");
+    const taskInput = document.getElementById("task-input");
+
+    // Load saved tasks
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedTasks = JSON.parse(localStorage.getItem(day)) || [];
+      savedTasks.forEach(task => {
+        list.appendChild(createTaskElement(task));
+      });
+    });
+
+    function addTask() {
+      const task = taskInput.value.trim();
+      if (task) {
+        list.appendChild(createTaskElement(task));
+        saveTask(task);
+        taskInput.value = "";
+      }
+    }
+
+    function createTaskElement(task) {
+      const li = document.createElement('li');
+      li.textContent = task;
+      li.addEventListener('click', () => {
+        if (confirm(`Remove task: "${task}"?`)) {
+          li.remove();
+          removeTask(task);
+        }
+      });
+      return li;
+    }
+
+    function saveTask(task) {
+      const savedTasks = JSON.parse(localStorage.getItem(day)) || [];
+      savedTasks.push(task);
+      localStorage.setItem(day, JSON.stringify(savedTasks));
+    }
+
+    function removeTask(task) {
+      let savedTasks = JSON.parse(localStorage.getItem(day)) || [];
+      savedTasks = savedTasks.filter(t => t !== task);
+      localStorage.setItem(day, JSON.stringify(savedTasks));
+    }
+  </script>
+</body>
+</html>

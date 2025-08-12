@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap Flex Cards</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+  <style>
+    body {
+background: #3F5EFB;
+background: radial-gradient(circle,rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
+    }
+    h1{
+        font-size: 45px;
+    }
+
+    .flex-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 250px;
+      padding: 40px;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      background-color: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .create{
+        color: blueviolet;
+    }
+  </style>
+</head>
+
+<body>
+    <h1>The<br /><span class="create">To-Do</span><br />List</h1>
+  <div class="flex-container">
+    <div class="card" style="width: 18rem;">
+      <img src="./flower.jpg" class="card-img-top" alt="flower">
+      <div class="card-body">
+        <h5 class="card-title">Recent ToDo List</h5>
+        <p class="card-text">open and do it today!</p>
+<button type="button" class="btn btn-outline-info" onclick="location.href='main.html'">Go to To-Do List</button>
+      </div>
+    </div>
+    <div class="card" style="width: 18rem;">
+      <img src="./cat.jpeg" class="card-img-top" alt="cat">
+      <div class="card-body">
+        <h5 class="card-title">Week's ToDo List.</h5>
+        <p class="card-text">open and plan your week!</p>
+<button type="button" class="btn btn-outline-info" onclick="location.href='select-day.html'">Go to week list</button>
+      </div>   
+    </div>
+  </div>
+</body>
+
+</html>
